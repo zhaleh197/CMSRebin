@@ -1,0 +1,149 @@
+﻿@using CmsRebin.Application.Service.Collection.Commands.PostTable
+@model ReslutPostTableDto;
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Adminlayout.cshtml";
+}
+
+
+
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <!-- Zero configuration table -->
+        <section id="configuration">
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-8">
+                                    <div class="card-title-wrap bar-success ">
+                                        <h4 class="card-title"> جداول</h4>
+                                    </div>
+                                </div>
+                                @*<div class="col-4">
+                                    <button class="btn btn-success" onclick="location.href='CreateItem'"> + </button>
+                                </div>*@
+                            </div>
+                        </div>
+                        <div class="card-body collapse show">
+                            <div class="card-block card-dashboard">
+                                <p class="card-text">لیست جداول CMSRebin</p>
+
+                                @*<form method="get" class="col-xl-4 col-lg-6 col-md-12 mb-1">
+                                    <fieldset class="form-group">
+                                        <input type="text" class="form-control" name="serchkey">
+                                        <button class="btn btn-success">جستجو</button>
+                                    </fieldset>
+                                </form>*@
+
+                                <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+                                    <div class="col-sm-12">
+                                        <table class="table table-striped table-bordered zero-configuration dataTable" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="نام: activate to sort column descending" style="width: 222px;">نام</th>
+                                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="توضیحات: activate to sort column ascending" style="width: 401px;">توضیحات</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                @foreach (var item in Model.TableDtos)
+                                                {
+                                                    if (!item.IsRemoved)
+                                                    {
+                                                <tr role="row" class="odd">
+
+                                                    <td class="sorting_1" onclick="GetI('@item.Id', '@item.collection')"> @item.collection</td>
+                                                    <td class="sorting_1" >@item.note</td>
+                                                </tr>
+                                                    }
+                                                }
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div><div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">نمایش 1 تا 10 </div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="DataTables_Table_0_previous"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" class="page-link">قبلی</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item "><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item "><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="5" tabindex="0" class="page-link">5</a></li><li class="paginate_button page-item "><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="6" tabindex="0" class="page-link">6</a></li><li class="paginate_button page-item next" id="DataTables_Table_0_next"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="7" tabindex="0" class="page-link">بعدی</a></li></ul></div></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+</div>
+
+
+@section Scripts
+{
+
+    <link href="~/Sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+    <script src="~/Sweetalert2/sweetalert2.min.js"></script>
+
+    <script>
+
+
+
+        function GetI(tableid, collection) {
+
+            swal.fire({
+                title: 'حذف جدول',
+                text: "نمایش رکوردهای جدول ؟",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#7cacbe',
+                confirmButtonText: 'بله ',
+                cancelButtonText: 'خیر'
+            }).then((result) => {
+                if (result.value) {
+
+                    var postData = {
+                        'TableId': tableid,
+                        'Collection': collection,
+                    };
+
+                    $.ajax(
+                        {
+                            contentType: 'application/x-www-form-urlencoded',
+                            dataType: 'json',
+                            type: "POST",
+                            url: "GetItemTable",
+                            data: postData,
+                            success: function (data) {
+                                if (data.isSuccess == true) {
+                                    location.href = 'GetItems';
+                                }
+                                else {
+
+                                    swal.fire(
+                                        'هشدار!',
+                                        data.message,
+                                        'warning'
+                                    );
+
+                                }
+                            },
+                            error: function (request, status, error) {
+                                alert(request.responseText);
+                            }
+
+                        }
+                    );
+
+                }
+            })
+            //location.href = 'GetFileds';
+        }
+
+
+
+
+    </script>
+
+
+}
+
+

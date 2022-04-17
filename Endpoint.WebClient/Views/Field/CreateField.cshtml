@@ -1,0 +1,296 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model CmsRebin.Application.Service.Filed.Commands.AddField.RequestCreateFieldDto
+@using CmsRebin.Common.Dto;
+@{
+
+    Layout = "~/Views/Shared/_Adminlayout.cshtml";
+    ViewData["Title"] = "CreateField";
+    int indexTable = 0;
+    int i = 0;
+    var getlistFildsofAllTable = ViewBag.FildsofAllTable.Items as IEnumerable<List<List<string>>>;
+    @*List<T_FDto> tflist = new List<T_FDto>();
+        List<string> table2liast = new List<string>();
+        List<string> filedofthisTable = new List<string>();
+
+        @foreach (var tf in ViewBag.listTabl)
+        {
+            table2liast.Add(tf);
+        }*@
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link href="~/SiteTemplate/assets/css/Jadwal.css" rel="stylesheet" />
+
+    @*<script src="~/lib/jquery/dist/jquery.js"></script>*@
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    @*<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>*@
+
+
+    <script src="~/Sweetalert2/sweetalert2.min.js"></script>
+    <link href="~/Sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+
+
+    <meta charset="UTF-8" />
+    <title>Rating Demo Complete</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>jQuery Bar Rating - Minimal, light-weight jQuery ratings</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=1024, initial-scale=1">
+    <link rel="stylesheet" href="css/normalize.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/examples.css">
+    <!-- Icons -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/FontFace.css">
+
+    <!-- Themes -->
+    <link rel="stylesheet" href="css/themes/bars-1to10.css">
+    <link rel="stylesheet" href="css/themes/bars-movie.css">
+    <link rel="stylesheet" href="css/themes/bars-square.css">
+    <link rel="stylesheet" href="css/themes/bars-pill.css">
+    <link rel="stylesheet" href="css/themes/bars-reversed.css">
+    <link rel="stylesheet" href="css/themes/bars-horizontal.css">
+    <link rel="stylesheet" href="css/themes/fontawesome-stars.css">
+    <link rel="stylesheet" href="css/themes/css-stars.css">
+    <link rel="stylesheet" href="css/themes/bootstrap-stars.css">
+    <link rel="stylesheet" href="css/themes/fontawesome-stars-o.css">
+
+    <!-- Fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+    <script src="js/jquery.barrating.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+</head>
+
+<body data-col="2-columns" class=" 2-columns ">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+
+    <div class="row text-left" dir="ltr">
+        <div dir="ltr">
+            <h2>
+                <a href="/Home/Index">
+                    <i class="bi bi-reply-fill" data-bs-toggle=" tooltip" data-bs-placement="top" title="بازگشت به خانه "></i>
+                </a>
+            </h2>
+        </div>
+    </div>
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg">
+                <section class="page-account-box">
+                    <div class="col-lg-6 col-md-6 col-xs-12 mx-auto">
+                        <div class="ds-userlogin">
+
+                            <div class=" row center">
+                                <h3 class="text-center"> ایجاد دیتابیس توسط   @ViewBag.UsernameLogined   </h3>
+                            </div>
+
+                            <div class="account-box">
+                                @*<div class="account-box-headline">
+                                        <a href="#" class="login-ds active">
+                                            <span class="title">ایجاد دیتابیس </span>
+                                        </a>
+                                    </div>*@
+
+                                <div class="shadow p-3 mb-5 bg-body rounded Login-to-account mt-4 ">
+                                    <div class="account-box-content">
+                                        <h4> ایجاد فیلد جدید در  جدول @ViewBag.Tname </h4>
+
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <form asp-action="CreateField">
+                                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                                    <div class="form-group">
+                                                        <label asp-for="DbName" class="control-label" value="@ViewBag.DBname"></label>
+                                                        @*<input asp-for="DbName" class="form-control" value="@ViewBag.DBname" disabled="disabled" />*@
+                                                        <span asp-validation-for="DbName" class="text-danger"></span>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label asp-for="tablename" class="control-label" value="@ViewBag.Tname"></label>
+                                                        @*<input asp-for="tablename" class="form-control" value="@ViewBag.Tname" disabled="disabled" />*@
+                                                        <span asp-validation-for="tablename" class="text-danger"></span>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label asp-for="name" class="control-label"></label>
+                                                        <input asp-for="name" class="form-control" />
+                                                        <span asp-validation-for="name" class="text-danger"></span>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label asp-for="type" class="control-label"></label>
+                                                        @*<input asp-for="type" class="form-control" />*@
+                                                        <fieldset class="form-group">
+                                                            <select asp-for="type" class="form-control" asp-items="@ViewBag.Typ"></select>
+                                                            @*@Html.DropDownList("filed", new SelectList(@ViewBag.typefile, "id", "typefield"), "-", new { @class = "form-control", @id = "typeofField" })*@
+                                                        </fieldset>
+                                                        <span asp-validation-for="type" class="text-danger">
+                                                        </span>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label asp-for="Relation" class="control-label"></label>
+                                                        @*<input asp-for="Relation" class="form-control" />*@
+                                                        <fieldset class="form-group">
+                                                            <select asp-for="Relation" class="form-control" asp-items="@ViewBag.typerelation" id="Relation"></select>
+                                                            @*@Html.DropDownList("Relation", new SelectList(@ViewBag.typerelation, "id", "typerelation"), "-", new { @class = "form-control", @id = "relationsofTables" })*@
+                                                        </fieldset>
+                                                        <span asp-validation-for="Relation" class="text-danger"></span>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label asp-for="table2" class="control-label"></label>
+                                                        @*<input asp-for="table2" class="form-control" />*@
+                                                        <fieldset asp-for="table2" class="form-group">
+
+                                                            <select asp-for="table2" class="form-control" asp-items="@ViewBag.Table2list" id="table2"></select>
+                                                            @*@Html.DropDownList("Tables", new SelectList(@ViewBag.Table2list, "collection"), "-", new { @class = "form-control", @id = "table2" })*@
+                                                            <script>
+                    var t = $("#table2 option:selected").index(); // $('#ddlRole option:selected').index()
+                    @indexTable = t;
+                                                            </script>
+                                                        </fieldset>
+                                                        <span asp-validation-for="table2" class="text-danger"></span>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label asp-for="forignkey" class="control-label"></label>
+                                                        @*<input asp-for="forignkey" class="form-control" />*@
+                                                        <fieldset asp-for="forignkey" class="form-group">
+                                                            <select asp-for="forignkey" class="form-control" id="FildTable2">
+
+                                                                @foreach (var fildst in ViewBag.FildsofAllTable.Items)
+                                                                {
+                                                                    if (i == indexTable)
+                                                                    {
+                                                                        @*<select asp-for="forignkey" class="form-control" asp-items="(SelectList)fildst" id="FildTable2"></select>*@
+                                                                        foreach (var f in fildst)
+                                                                        {
+                                                                            @*<select asp-for="forignkey" class="form-control" id="FildTable2">*@
+                                                                            <option class="form-control">
+                                                                                @f
+                                                                            </option>
+                                                                            //</select>
+                                                                        }
+                                                                        break;
+                                                                    }
+                                                                    i++;
+                                                                }
+                                                            </select>
+                                                            @*<select asp-for="forignkey" class="form-control" asp-items="@getlistFildsofAllTable[@indexTable]" id="FildTable2"></select>*@
+
+
+                                                            @*@Html.DropDownList("forignkey", new SelectList(@ViewBag.FildsofAllTable[indexTable], "id", "typerelation"), "-", new { @class = "form-control", @id = "relationsofTables" })*@
+                                                        </fieldset>
+                                                        <span asp-validation-for="forignkey" class="text-danger"></span>
+                                                    </div>
+
+
+                                                    <div class="form-group form-check">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input" asp-for="Nullable" /> @Html.DisplayNameFor(model => model.Nullable)
+                                                        </label>
+                                                    </div>
+
+                                                    <div class="form-group form-check">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input" asp-for="Uniqe" /> @Html.DisplayNameFor(model => model.Uniqe)
+                                                        </label>
+                                                    </div>
+
+
+                                                    <div class="form-group">
+                                                        <input type="submit" value="ایجاد فیلد " class="btn btn-primary" />
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+</html>
+
+@section Scripts {
+    @*show/hide dropwonList*@
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#Relation").change(function () {
+
+                //if ($('#Relation').val() != "None") {
+                //    //$('#table2div').show();
+                //    $('#table2div').show("slow");
+                //    //$('#table2').show("slow");
+                //    //$('#table2').enableSelection();
+                //}
+                if ($('#Relation').val() == "None") {
+                    //alert("hiddd");
+                    //$('#table2').enableSelection();
+                    $('#table2div').hide("slow");
+                    $('#divforinkey').hide("slow");
+                    //$('#table2div').hide();
+                    //$('#divforinkey').hide();
+
+                }
+                if ($('#Relation').val() != "None") {
+                    //$('#table2div').show();
+                    $('#table2div').show("slow");
+                    //$('#table2').show("slow");
+                    //$('#table2').enableSelection();
+                }
+
+
+            });
+            $("#table2").change(function () {
+                $('#divforinkey').show("slow");
+                $('#forignkey').empty();
+                $.ajax({
+                    url: '@Url.Action("fild_Bind", "Field")',
+                    type: 'GET',
+                    data: {
+                        id: $('#table2').val(),
+                    },
+                    success: function (data) {
+                        $(data).each(
+                            function (index, statelist) {
+                                $('#forignkey').append('<option value="' + statelist.value + '">' + statelist.text + '</option>')
+                            });
+                    },
+                    error: function () {
+                    }
+                });
+            }
+            );
+        });
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

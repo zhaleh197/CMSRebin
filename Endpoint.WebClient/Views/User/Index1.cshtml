@@ -1,0 +1,19 @@
+﻿
+<h4 class="text-center">تایید حذف</h4>
+<hr />
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-offset-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
+        <form asp-action="DeletePermission">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <h4>آیا از حذف این مورد اطمینان دارید؟</h4>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="حذف شود" class="btn btn-success btn-block" />
+            </div>
+        </form>
+    </div>
+</div>
+

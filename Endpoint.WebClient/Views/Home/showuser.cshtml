@@ -1,0 +1,82 @@
+﻿@model IEnumerable<CmsRebin.Application.Service.Database.Queris.GetDB.GetDBDto>
+
+@{
+    ViewData["Title"] = "Index";
+                        
+}
+
+
+
+<head>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+</head>
+
+<div class="col-lg-offset-3 col-lg-8  col-md-offset-3 col-md-8 col-sm-10 col-sm-offset-1 col-10 col-xs-offset-1 panel-back" style="margin-bottom:30px">
+    <div class="margin_top_50" style="display: flex; justify-content: space-between;">
+        <h2 class="text-left">
+            <a href="#" onclick="MyCreate()" class="btn btn-success">جدید</a>
+        </h2>
+    </div>
+
+    <div class="margin_top_30">
+        <table class="table table-bordered table-hover" id="myTable">
+            <thead>
+                <tr>
+                    <th class="text-right">
+                        @Html.DisplayNameFor(model => model.DB)
+                    </th>
+                    <th class="text-center">
+                        @Html.DisplayNameFor(model => model.Owner.first_name)
+                    </th>
+                  
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td class="text-right">
+                            @Html.DisplayFor(modelItem => item.DB)
+                        </td>
+
+                        <td class="text-center">
+                            <a href="#" onclick="MyEdit(@item.Owner.id)" class="btn btn-warning">@item.Owner.first_name</a>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="myModall" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="bodyModall" class="modal-body">
+
+            </div>
+        </div>
+    </div>
+</div>
+ 
+    <script>
+
+        function MyEdit(id) {
+            $.ajax({
+                url: "/Home/Show/" + id,
+                type: "Get",
+                data: {}
+            }).done(function (result) {
+                $('#myModall').modal('show');
+                $('#bodyModall').html(result);
+            })
+        }
+    </script>
+ 

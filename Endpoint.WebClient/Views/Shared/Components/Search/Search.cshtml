@@ -1,0 +1,38 @@
+﻿
+
+@{
+    ViewData["Title"] = "Search";
+    //Layout = "~/Views/Shared/_Adminlayout.cshtml";@*@using CmsRebin.Application.Service.Collection.Queris.GetItems @model ReslutGetItemsdDto; *@
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link href="~/SiteTemplate/assets/css/Jadwal.css" rel="stylesheet" />
+</head>
+
+
+<body>
+    <form asp-action="Index" asp-controller="Search" class="form-search" method="get">
+        <input type="search" name="SearchKey" placeholder=" جستجو کنید…" />
+        <div class="action-btns">
+            <button class="bi bi-search" type="submit">
+            @*<i class="fa fa-search"></i>*@
+            @*<i class="bi bi-search"></i>*@
+            </button>
+
+
+            <!--<div class="search-filter">
+    <div class="form-ui">
+        <!--<div class="custom-select-ui">
+            <select class="right" name="CatId">-->
+            <!--@*<option>همه جداول </option>
+    <option>این جدول </option>*@-->
+            <!--</select>-->
+            <!--</div>
+    </div>-->
+            @*  </div>*@
+        </div>
+    </form>
+</body>
+</html>

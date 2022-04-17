@@ -1,0 +1,103 @@
+﻿
+@model CmsRebin.Common.Dto.StringLsetModel
+
+@{
+    ViewData["Title"] = "InsertItem";
+    Layout = "~/Areas/Admin/Views/Shared/_Adminlayout.cshtml";
+}
+
+@{
+    List<string> dataitm = new List<string>();
+    List<string> itemname = new List<string>();
+    string nameitm = "";
+}
+
+<h1>InsertItem</h1>
+
+<h4>StringLsetModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="InsertItem">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="col-xl-4 col-lg-6 col-md-12 mb-1">
+                <fieldset class="form-group">
+                    <label for="basicInput" class="form-control ql-size-large" id="tablenam">  @ViewBag.tablenamit  </label>
+                </fieldset>
+            </div>
+
+            @foreach (var it in Model.DataItems)
+            {
+                @if (@it == "InsertTime" ||
+         @it == "UpdateTime" ||
+         @it == "IsRemoved" ||
+         @it == "RemoveTime" ||
+         @it == "id")
+                {
+                }
+                else
+                {
+                    <div class="field full" data-v-a6970e8e="" data-v-4c7821e7="">
+                        <div class="v-menu" data-v-1f453762="" data-v-a6970e8e="">
+                            <div class="v-menu-activator" data-v-1f453762="">
+                                <div class="label type-label" data-v-268044f0="" data-v-a6970e8e="">
+                                    <span data-v-268044f0="" data-tooltip="v0o83JPG8bXjjAoxNvTXN">
+                                        @it
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="interface" data-v-43a8ae08="" data-v-a6970e8e="">
+                            <div class="v-input full-width sans-serif" data-v-71ccfd30="" data-v-e06c0060="" data-v-43a8ae08="">
+                                <div class="input" data-v-71ccfd30="">
+                                    <input loading="false" width="0" collection=@ViewBag.tablenamit field=@it primary-key="+" autocomplete="off" type="text" step="1" data-v-71ccfd30="" id=@it>
+
+                                    <script>
+                                        nameitm = document.getElementById("#@it");
+                                    </script>
+
+                                    @{
+                                        itemname.Add(it);
+                                        dataitm.Add(nameitm);
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="v-dialog" data-v-76480f74="" data-v-a6970e8e="">
+                        </div>
+                    </div>
+
+                }
+
+
+            }
+            @Model.DataItems=@dataitm;
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary " />
+            </div>
+
+            @*<div class="col-4 form-group  ">
+                <button class="btn btn-success" onclick="location.href='InsertItemGet'"> InsertItemGet </button>
+            </div>*@
+
+
+            <div class="col-xl-12 col-lg-12 col-md-12 mb-1">
+                <fieldset class="form-group">
+                    <br />
+                    <a onclick="location.href='InsertItemGet'" class="btn btn-success col-md-12 ">اتمام  </a>
+                </fieldset>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

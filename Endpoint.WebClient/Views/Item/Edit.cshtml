@@ -1,0 +1,321 @@
+﻿@model CmsRebin.Application.Service.Collection.Commands.CreateItem.RequestCreateItemdDto
+@{
+    ViewData["Title"] = "EditITem";
+    Layout = "~/Views/Shared/_Adminlayout.cshtml";
+    var M = ViewBag.Items_Fild;
+    var FildSS = ViewBag.Filds;
+    var iditem = ViewBag.idItemSelectedinTable2;
+    //List<string> dataitm = new List<string>();
+    //List<string> itemname = new List<string>();
+    //string nameitm = "";
+    int i = 0;
+     
+   
+    int idSelectedForEdited = Convert.ToInt32(ViewBag.iditemSelected) - 1 ;
+    var itemthis = ViewBag.Itemsha;    
+   
+    //List<string> dataitm = new List<string>();
+    //List<string> itemname = new List<string>();
+    //string nameitm = "";
+
+
+
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link href="~/SiteTemplate/assets/css/Jadwal.css" rel="stylesheet" />
+
+    @*<script src="~/lib/jquery/dist/jquery.js"></script>*@
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    @*<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>*@
+
+
+    <script src="~/Sweetalert2/sweetalert2.min.js"></script>
+    <link href="~/Sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+
+
+    <meta charset="UTF-8" />
+    <title>Rating Demo Complete</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>jQuery Bar Rating - Minimal, light-weight jQuery ratings</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=1024, initial-scale=1">
+    <link rel="stylesheet" href="css/normalize.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/examples.css">
+    <!-- Icons -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/FontFace.css">
+
+    <!-- Themes -->
+    <link rel="stylesheet" href="css/themes/bars-1to10.css">
+    <link rel="stylesheet" href="css/themes/bars-movie.css">
+    <link rel="stylesheet" href="css/themes/bars-square.css">
+    <link rel="stylesheet" href="css/themes/bars-pill.css">
+    <link rel="stylesheet" href="css/themes/bars-reversed.css">
+    <link rel="stylesheet" href="css/themes/bars-horizontal.css">
+    <link rel="stylesheet" href="css/themes/fontawesome-stars.css">
+    <link rel="stylesheet" href="css/themes/css-stars.css">
+    <link rel="stylesheet" href="css/themes/bootstrap-stars.css">
+    <link rel="stylesheet" href="css/themes/fontawesome-stars-o.css">
+
+    <!-- Fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+    <script src="js/jquery.barrating.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+
+<body data-col="2-columns" class=" 2-columns ">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+
+    <div class="row text-left" dir="ltr">
+        <div dir="ltr">
+            <h2>
+                <a href="/Home/Index">
+                    <i class="bi bi-reply-fill" data-bs-toggle=" tooltip" data-bs-placement="top" title="بازگشت به خانه "></i>
+                </a>
+            </h2>
+        </div>
+    </div>
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg">
+                <section class="page-account-box">
+                    <div class="col-lg-6 col-md-6 col-xs-12 mx-auto">
+                        <div class="ds-userlogin">
+
+                             <div class=" row center">
+                                <h3 class="text-center">  ویرایش رکورد  در جدول "@ViewBag.Tname"  </h3>
+                            </div>
+
+                            <div class="account-box">
+
+                                <div class="shadow p-3 mb-5 bg-body rounded Login-to-account mt-4 ">
+                                    <div class="account-box-content">
+                                        <h4>ویرایش item </h4>
+
+
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <form asp-action="Edit">
+                                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                                    <div class="form-group">
+                                                        <label asp-for="DbName" class="control-label">@ViewBag.DBname</label>
+                                                        @*<input asp-for="DbName" class="form-control" disabled="disabled" text="@ViewBag.DBname" />*@
+                                                        <span asp-validation-for="DbName" class="text-danger"></span>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label asp-for="TableName" class="control-label"> @ViewBag.Tname </label>
+                                                        @*<input asp-for="TableName" class="form-control" disabled="disabled" text=" @ViewBag.Tname " />*@
+                                                        <span asp-validation-for="TableName" class="text-danger"></span>
+                                                    </div>
+
+                                                    @*<div class="col-xl-4 col-lg-6 col-md-12 mb-1">
+                                                            <fieldset class="form-group">
+                                                                <label for="basicInput" class="form-control ql-size-large" id="tablenam">  @ViewBag.Tname </label>
+                                                            </fieldset>
+                                                        </div>*@
+
+                                                    @foreach (var it in FildSS)
+                                                    {
+                                                        @if (@it == "InsertTime" ||
+                                                    @it == "UpdateTime" ||
+                                                    @it == "IsRemoved" ||
+                                                    @it == "RemoveTime" ||
+                                                    @it == "id")
+                                                        {
+                                                        }
+                                                        else
+                                                        {
+                                                            <div class="field full" data-v-a6970e8e="" data-v-4c7821e7="">
+                                                                <div class="v-menu" data-v-1f453762="" data-v-a6970e8e="">
+                                                                    <div class="v-menu-activator" data-v-1f453762="">
+                                                                        <div class="label type-label" data-v-268044f0="" data-v-a6970e8e="">
+                                                                            <label asp-for="S[@i]" class="control-label" >
+                                                                                @it
+                                                                            </label>
+                                                                            <span data-v-268044f0="" data-tooltip="v0o83JPG8bXjjAoxNvTXN">
+
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="interface" data-v-43a8ae08="" data-v-a6970e8e="">
+                                                                    <div class="v-input full-width sans-serif" data-v-71ccfd30="" data-v-e06c0060="" data-v-43a8ae08="">
+                                                                        <div class="input" data-v-71ccfd30="">
+
+                                                                            @{
+                                                                                if (M.ITM[0].releationfiled[i + 5] == "1-1" ||
+                                                                                M.ITM[0].releationfiled[i + 5] == "1-n" ||
+                                                                                M.ITM[0].releationfiled[i + 5] == "m-n")
+                                                                                {
+                                                                                    <td class="text-center">
+                                                                                        <input asp-for="I[@i]" loading="false" width="0"
+                                                                                               collection=@ViewBag.Tname field=@it primary-key="+"
+                                                                                               autocomplete="off" type="text" step="1"
+                                                                                               data-v-71ccfd30="" id=@it  value=@iditem/>
+                                                                                        @*<input type="text"  asp-for="I[@i]" id=@it value=" "/>*@
+
+
+                                                                                    </td>
+                                                                                    <td> 
+                                                                                            <a href="/Item/ShowTable2Items/@M.ITM[0].table2id[i+5]" class="btn" >
+                                                                                                <i class="bi bi-arrow-left-square" ></i>
+                                                                                            </a> 
+                                                                                            <button id="tt2itm"> refresh </button >
+                                                                                    </td>
+                                                                                    @*<script type="text/javascript">
+                                                                                        $(document).ready(function () {
+                                                                                            $('#tt2itm').click(function (){
+                                                                                          /*  $("#tt2itm").click(function () {*/
+                                                                                                $('#@it').text("hiiiiiii");
+                                                                                            });
+                                                                                        });
+                                                                                    </script>*@
+
+                                                                                }
+                                                                                else
+                                                                                {
+
+                                                                                    <td class="text-center">
+                                                                                        @*<input asp-for="I[@i]" loading="false" width="0"
+                                                                                               collection=@ViewBag.Tname field=@it primary-key="+"
+                                                                                               autocomplete="off" type="text" step="1"
+                                                                                               data-v-71ccfd30="" id=@it />*@
+                                                                                         <input type="text"  asp-for="I[@i]" id=@it value=@itemthis[@i+5][0] />
+                                                                                    </td>
+
+                                                                                }
+                                                                            }
+
+
+
+
+
+                                                                            @*<input asp-for="I[@i]" class="form-control" />*@
+
+                                                                            @*<label asp-for="S[@i]" class="control-label">
+                                                                                    @it
+                                                                                </label>*@
+
+                                                                            <!--<script>-->
+                                                                            @*nameitm = document.getElementById("#@it");*@
+                                                                            <!--nameitm = document.getElementById("#it");
+
+                                                                            </script>-->
+
+
+                                                                            @{
+                                                                                //itemname.Add(it);
+                                                                                //dataitm.Add(nameitm);
+                                                                                i = i + 1;
+
+                                                                                //Model.S.Add(it);
+                                                                                //Model.I.Add(nameitm);
+
+                                                                            }
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="v-dialog" data-v-76480f74="" data-v-a6970e8e="">
+                                                                </div>
+                                                            </div>
+
+
+                                                        }
+                                                        // @i= @i + 1;
+
+                                                    }
+                                                    @* @M.ITM[0].valuefiledlist=@dataitm;*@
+                                                    @*@Model.I=@dataitm;
+                                                        @Model.S=@itemname;*@
+
+
+
+
+                                                    @*<input class="form-check-input" asp-for="I" value="@dataitm" />
+                                                        <input class="form-check-input" asp-for="S" value="@itemname" />*@
+
+
+
+
+
+                                                    @*<div class="col-4 form-group  ">
+                                                            <button class="btn btn-success" onclick="location.href='InsertItemGet'"> InsertItemGet </button>
+                                                        </div>*@
+
+
+                                                    @*<div class="col-xl-12 col-lg-12 col-md-12 mb-1">
+                                                            <fieldset class="form-group">
+                                                                <br />
+                                                                <a onclick="location.href='InsertItem'" class="btn btn-success col-md-12 ">اتمام  </a>
+                                                            </fieldset>
+                                                        </div>*@
+
+
+
+
+                                                    @*<div class="form-group">
+                                                            <label asp-for="I" class="control-label"> </label>
+                                                            @Model.I=@dataitm;
+                                                            <span asp-validation-for="I" class="text-danger"></span>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label asp-for="S" class="control-label"> </label>
+
+                                                            @ el.S=@itemname;
+                                                            <span asp-validation-for="S" class="text-danger"></span>
+                                                        </div>*@
+
+                                                    <div class="form-group">
+                                                        <input type="submit" value="اضافه کردن رکورد" class="btn btn-primary" />
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</body>
+</html>
+
+@section Scripts {
+
+    @*<script type="text/javascript">
+        $(document).ready(function () {
+            $("#tt2itm").click(function () {
+                $('#3').val(@iditem);
+            });
+    </script>*@
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,67 @@
+﻿@model CmsRebin.Application.Service.Common.SMS.SMSSendRequest
+
+@{
+    ViewData["Title"] = "SendSMS";
+    Layout = "~/Views/Shared/_Adminlayout.cshtml";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title> Rebin </title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="~/css/css/util.css">
+<link rel="stylesheet" type="text/css" href="~/css/css/main.css">
+@*
+<link rel="stylesheet"  href="~/css/bg-01.jpg">*@
+<!--===============================================================================================-->
+</head>
+<body>
+ <div class="limiter">
+		@*<div class="container-login100" style="background-image: url('~/css/css/bg-01.jpg');">*@
+			<div class="wrap-login100 p-t-30 p-b-50">
+				<form class="login100-form validate-form p-b-33 p-t-5">
+				
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="SendSMS">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="sender" class="control-label"> ارسال کننده</label>
+                <input asp-for="sender" class="form-control" />
+                <span asp-validation-for="sender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="to" class="control-label">به </label>
+                <input asp-for="to" class="form-control" />
+                <span asp-validation-for="to" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="txt" class="control-label">متن پیام</label>
+                <input asp-for="txt" class="form-control" />
+                <span asp-validation-for="txt" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="apikey" class="control-label"></label>
+                <input asp-for="apikey" class="form-control" />
+                <span asp-validation-for="apikey" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="ارسال" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+				</form>
+			</div>
+		@*</div>*@
+	</div>
+	
+
+	<div id="dropDownSelect1"></div>
+	
+
+</body>
+</html>
